@@ -1,0 +1,9 @@
+{
+    "name": "Donations",
+    "description": "Donation processing, DGR tax receipts, and contribution history.",
+    "version": "1.0.0",
+    "enabled": true,
+    "core": false,
+    "author": "IntuitionLab Pty Ltd",
+    "dependencies": []
+}
