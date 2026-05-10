@@ -2,11 +2,11 @@
 
 namespace App\Modules\Donations;
 
-use App\Modules\Donations\Contracts\PaymentGatewayContract;
 use App\Modules\Donations\Gateways\PayPalGateway;
 use App\Modules\Donations\Gateways\StripeGateway;
 use App\Modules\Donations\Services\DonationService;
 use App\Modules\Donations\Services\PaymentGatewayService;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class ModuleServiceProvider extends ServiceProvider
@@ -31,8 +31,12 @@ class ModuleServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->loadRoutesFrom(__DIR__ . '/Routes/web.php');
-        $this->loadMigrationsFrom(__DIR__ . '/Migrations');
-        $this->loadViewsFrom(__DIR__ . '/Views', 'donations');
+        $this->loadMigrationsFrom(__DIR__.'/Migrations');
+        $this->loadViewsFrom(__DIR__.'/Views', 'donations');
+
+        Route::middleware('web')
+            ->group(function () {
+                $this->loadRoutesFrom(__DIR__.'/Routes/web.php');
+            });
     }
 }

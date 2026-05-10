@@ -34,7 +34,6 @@ Route::prefix('admin')
 
         Route::get('/', fn () => redirect()->route('admin.dashboard'));
         Route::get('/dashboard', [AdminDashboard::class, 'index'])->name('dashboard');
-
         // Members
         Route::get('/members', fn () => view('admin.members.index'))->name('members');
         Route::get('/members/create', fn () => view('admin.members.create'))->name('members.create');
